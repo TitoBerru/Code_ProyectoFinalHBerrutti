@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.coderhouse.dtos.TimeApiDTO;
-import com.coderhouse.dtos.WorldClockResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
