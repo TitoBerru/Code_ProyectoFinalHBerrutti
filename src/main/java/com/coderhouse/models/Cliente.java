@@ -53,14 +53,6 @@ public class Cliente {
     
     private LocalDateTime createdAt;
 
-    // Eliminamos la relación ManyToMany con Producto
-    // @ManyToMany
-    // @JoinTable( 
-    // name = "producto_cliente", 
-    // joinColumns = @JoinColumn(name = "cliente_id"), 
-    // inverseJoinColumns = @JoinColumn(name = "producto_id"))
-    // @JsonIgnore
-    // private List<Producto> productos = new ArrayList<>();
 
     // Constructores, Getters y Setters
 
@@ -87,7 +79,7 @@ public class Cliente {
         this.createdAt = createdAt;
     }
 
-    // Getters y Setters (sin productos)
+    // Getters y Setters
     public Long getId() {
         return id;
     }

@@ -82,9 +82,8 @@ public class FacturacionService {
             detalleFactura.setCantidad(detalle.getCantidad());
             detalleFactura.setPrecioUnitario(precioVentaProducto);
 
-            detalleFactura.calcularSubtotal(); // Asegúrate de calcular el subtotal
+            detalleFactura.calcularSubtotal(); 
 
-            BigDecimal cantidad = BigDecimal.valueOf(detalle.getCantidad());
             BigDecimal subtotal = detalleFactura.getSubtotal(); // Obtener el subtotal calculado
 
             totalFactura = totalFactura.add(subtotal);
@@ -107,6 +106,7 @@ public class FacturacionService {
         // Convertir Factura a FacturaDTO
         return convertToDTO(factura);
     }
+   
 
     public FacturaDTO obtenerFactura(Long id) {
         Factura factura = facturaRepository.findById(id)
@@ -114,6 +114,15 @@ public class FacturacionService {
         return convertToDTO(factura);
     }
 
+    
+    
+    public List<FacturaDTO> obtenerTodasLasFacturas() {
+        List<Factura> facturas = facturaRepository.findAll();
+        return facturas.stream()
+            .map(this::convertToDTO)
+            .collect(Collectors.toList());
+    }
+    
     private FacturaDTO convertToDTO(Factura factura) {
         List<DetalleFacturaDTO> detalleFacturaDTOs = factura.getDetalles().stream()
             .map(detalle -> new DetalleFacturaDTO(
@@ -123,12 +132,18 @@ public class FacturacionService {
                 detalle.getSubtotal()))
             .collect(Collectors.toList());
 
-        return new FacturaDTO(
-            factura.getNumeroFactura(),
-            factura.getCliente().getId(),
-            factura.getFechaEmision(),
-            factura.getTotalFactura(),
-            detalleFacturaDTOs
-        );
-    }
+        FacturaDTO facturaDTO = new FacturaDTO(
+                factura.getNumeroFactura(),
+                factura.getCliente().getId(),
+                factura.getCliente().getNombre(),
+                factura.getCliente().getDireccion(), 
+                factura.getFechaEmision(),
+                factura.getTotalFactura(),
+                detalleFacturaDTOs
+            );
+
+            facturaDTO.setId(factura.getId()); 
+
+            return facturaDTO;
+        }
 }

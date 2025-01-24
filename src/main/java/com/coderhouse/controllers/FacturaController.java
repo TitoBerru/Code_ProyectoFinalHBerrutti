@@ -1,7 +1,6 @@
 package com.coderhouse.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.coderhouse.dtos.FacturaDTO;
 import com.coderhouse.models.Factura;
 import com.coderhouse.service.FacturaService;
+import com.coderhouse.service.FacturacionService;
 
 @RestController
 @RequestMapping("/api/v1/facturas")
@@ -24,31 +25,32 @@ public class FacturaController {
 	@Autowired
 	private FacturaService facturaService;
 	
-	// Obtener todas las facturas
+	@Autowired
+    private FacturacionService facturacionService;
+	
+	// Obtener todas las facturas con detalles
 	@GetMapping
-	public ResponseEntity<List<Factura>> getAllFacturas() {
-		try {
-
-			List<Factura> facturas = facturaService.obtenerTodasLasFacturas();
-			return ResponseEntity.ok(facturas); // 200
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 500
-		}
-	}
-	// Obtener Factura por Id
+	 public ResponseEntity<List<FacturaDTO>> getAllFacturas() {
+        try {
+            List<FacturaDTO> facturas = facturacionService.obtenerTodasLasFacturas();
+            return ResponseEntity.ok(facturas); // 200
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 500
+        }
+    }
+	// Obtener Factura por Id con detalles
 	@GetMapping("/{id}")
-	public ResponseEntity<Optional<Factura>> getFacturaByID(@PathVariable Long id) {
-		try {
-			Optional<Factura> factura = facturaService.obtenerFacturaPorId(id);
-			return ResponseEntity.ok(factura); // 200
-		}
-
-		catch (IllegalArgumentException e) {
-			return ResponseEntity.notFound().build(); // 404
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 500
-		}
+	public ResponseEntity<FacturaDTO> getFacturaById(@PathVariable Long id) {
+        try {
+            FacturaDTO factura = facturacionService.obtenerFactura(id);
+            return ResponseEntity.ok(factura); // 200
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // 404
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 500
+        }
 	}
+    
 	
 	// Crear Factura
 	@PostMapping("/create")
@@ -61,18 +63,7 @@ public class FacturaController {
 		}
 	}
 	
-//	// Editar Factura
-//	@PutMapping("/{id}")
-//	public ResponseEntity<Factura> editFacturaById(@PathVariable Long id, @RequestBody Factura facturaModificada) {
-//		try {
-//			Factura facturaAModificar = facturaService.actualizarFactura(id, facturaModificada);
-//			return ResponseEntity.ok(facturaAModificar);
-//		} catch (IllegalArgumentException e) {
-//			return ResponseEntity.notFound().build(); // 404
-//		} catch (Exception e) {
-//			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 500
-//		}
-//	}
+		
 	// Borrar Factura
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteFacturaById(@PathVariable Long id) {

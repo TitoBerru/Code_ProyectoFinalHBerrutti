@@ -25,6 +25,8 @@ public class TimeApiDTO {
 			this.minute = minute;
 			this.dateTime = dateTime;
 		}
+		
+		//Getters and Setters
 
 		public int getYear() {
 			return year;
@@ -74,10 +76,5 @@ public class TimeApiDTO {
 			this.dateTime = dateTime;
 		}
 		
-		//Getters and Setters
-		
-	    
-	   
-	    
 	    
 }

@@ -3,7 +3,7 @@ package com.coderhouse.dtos;
 import java.math.BigDecimal;
 
 public class DetalleFacturaDTO {
-    private String nombreProducto; // Asegúrate de que esto está definido correctamente
+    private String nombreProducto; 
     private Integer cantidad;
     private BigDecimal precioUnitario;
     private BigDecimal subtotal;

@@ -20,10 +20,6 @@ public class VentaDetalleDTO {
 	public void setProductoIds(List<Long> productoIds) {
 		this.productoIds = productoIds;
 	}
-	
-	
-	
-	
-	
+
 	
 }
