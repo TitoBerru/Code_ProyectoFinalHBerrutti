@@ -77,11 +77,17 @@ Actualizar Producto: PUT /api/v1/productos/{id}
 
 Eliminar Producto: DELETE /api/v1/productos/{id}
 
-Facturas
-Crear Factura: POST /api/v1/facturas/create
+- **Compra:**
+Crear una compra: POST /api/v1/compras
 
-Obtener Facturas: GET /api/v1/facturas
+- **Facturas:**
 
-Obtener Factura por ID: GET /api/v1/facturas/{id}
+Obtener Facturas con detalles: GET /api/v1/facturas
+
+Obtener Factura por ID con detalle: GET /api/v1/facturas/{id}
 
 Eliminar Factura: DELETE /api/v1/facturas/{id}
+
+## **6 Licencia**
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para obtener más detalles.
+
