@@ -28,7 +28,9 @@ Este proyecto es un sistema de facturación desarrollado en Java utilizando Spri
 1. **Clonar el Repositorio:**
 
 bash
+
 git clone https://github.com/tu-repositorio/sistema-facturacion.git
+
 cd sistema-facturacion
 
 
@@ -43,14 +45,16 @@ spring.datasource.password=tu_contraseña
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.jpa.hibernate.ddl-auto=update
 
-- **Alternativa:** Dentro de la carpeta resources, existe la carpeta sql, la cual contiene un script inicial donde podra genera en forma automatica la base de datos, e incluye clientes y productos, para que pueda arrancar el servicio con datos incluidos.
+- **Alternativa:** Dentro de la carpeta resources, existe la carpeta sql, la cual contiene un script inicial donde se podra generar en forma automatica la base de datos, la cual ya incluye clientes y productos de ejemplo.
 
 ## **Instalar Dependencias y Compilar el proyecto**
 Bash
+
 mvn clean install
 
 ## **Ejectuar la aplicacion**
 Bash
+
 mvn spring-boot:run
 
 ## **Puntos de Acceso API**
@@ -78,7 +82,7 @@ Actualizar Producto: PUT /api/v1/productos/{id}
 
 Eliminar Producto: DELETE /api/v1/productos/{id}
 
-- **Compra:**
+- **Compras:**
 
 Crear una compra: POST /api/v1/compras
 
