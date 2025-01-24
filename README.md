@@ -32,7 +32,7 @@ git clone https://github.com/tu-repositorio/sistema-facturacion.git
 cd sistema-facturacion
 
 
-## **2 Configurar la Base de Datos**
+## **Configurar la Base de Datos**
 Crea una base de datos en MySQL y actualiza las credenciales en:
 src/main/resources/application.properties
 
@@ -45,15 +45,15 @@ spring.jpa.hibernate.ddl-auto=update
 
 - **Alternativa:** Dentro de la carpeta resources, existe la carpeta sql, la cual contiene un script inicial donde podra genera en forma automatica la base de datos, e incluye clientes y productos, para que pueda arrancar el servicio con datos incluidos.
 
-## **3 Instalar Dependencias y Compilar el proyecto**
+## **Instalar Dependencias y Compilar el proyecto**
 Bash
 mvn clean install
 
-## **4 Ejectuar la aplicacion**
+## **Ejectuar la aplicacion**
 Bash
 mvn spring-boot:run
 
-## **5 Puntos de Acceso API**
+## **Puntos de Acceso API**
 - **Clientes:**
 
 Crear Cliente: POST /api/v1/clientes
@@ -67,6 +67,7 @@ Actualizar Cliente: PUT /api/v1/clientes/{id}
 Eliminar Cliente: DELETE /api/v1/clientes/{id}
 
 - **Productos:**
+
 Crear Producto: POST /api/v1/productos
 
 Obtener Productos: GET /api/v1/productos
@@ -78,6 +79,7 @@ Actualizar Producto: PUT /api/v1/productos/{id}
 Eliminar Producto: DELETE /api/v1/productos/{id}
 
 - **Compra:**
+
 Crear una compra: POST /api/v1/compras
 
 - **Facturas:**
@@ -88,6 +90,6 @@ Obtener Factura por ID con detalle: GET /api/v1/facturas/{id}
 
 Eliminar Factura: DELETE /api/v1/facturas/{id}
 
-## **6 Licencia**
+## **Licencia**
 Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para obtener más detalles.
 
