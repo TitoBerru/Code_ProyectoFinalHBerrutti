@@ -164,15 +164,6 @@
 					"response": []
 				},
 				{
-					"name": "Obtener 1 factura by id Copy",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:8080/api/v1/facturas/2"
-					},
-					"response": []
-				},
-				{
 					"name": "Eliminar Factura by Id",
 					"request": {
 						"method": "DELETE",
