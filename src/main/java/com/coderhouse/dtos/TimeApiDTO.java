@@ -1,80 +1,88 @@
 package com.coderhouse.dtos;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "DTO para Time API")
 public class TimeApiDTO {
 
-	   private int year;
-	    private int month;
-	    private int day;
-	    private int hour;
-	    private int minute;
-	    
-	    private String dateTime;
+    @Schema(description = "Año", example = "2025", requiredMode = Schema.RequiredMode.REQUIRED)
+    private int year;
 
-	    // Constructores	
-		public TimeApiDTO() {
-			super();
-			// TODO Auto-generated constructor stub
-		}
+    @Schema(description = "Mes", example = "1", requiredMode = Schema.RequiredMode.REQUIRED)
+    private int month;
 
-		public TimeApiDTO(int year, int month, int day, int hour, int minute, String dateTime) {
-			super();
-			this.year = year;
-			this.month = month;
-			this.day = day;
-			this.hour = hour;
-			this.minute = minute;
-			this.dateTime = dateTime;
-		}
-		
-		//Getters and Setters
+    @Schema(description = "Día", example = "24", requiredMode = Schema.RequiredMode.REQUIRED)
+    private int day;
 
-		public int getYear() {
-			return year;
-		}
+    @Schema(description = "Hora", example = "14", requiredMode = Schema.RequiredMode.REQUIRED)
+    private int hour;
 
-		public void setYear(int year) {
-			this.year = year;
-		}
+    @Schema(description = "Minuto", example = "30", requiredMode = Schema.RequiredMode.REQUIRED)
+    private int minute;
 
-		public int getMonth() {
-			return month;
-		}
+    @Schema(description = "Fecha y hora como cadena de texto", example = "2025-01-24T14:30:00", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    private String dateTime;
 
-		public void setMonth(int month) {
-			this.month = month;
-		}
+    // Constructores
+    public TimeApiDTO() {
+        super();
+    }
 
-		public int getDay() {
-			return day;
-		}
+    public TimeApiDTO(int year, int month, int day, int hour, int minute, String dateTime) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.hour = hour;
+        this.minute = minute;
+        this.dateTime = dateTime;
+    }
 
-		public void setDay(int day) {
-			this.day = day;
-		}
+    // Getters y Setters
+    public int getYear() {
+        return year;
+    }
 
-		public int getHour() {
-			return hour;
-		}
+    public void setYear(int year) {
+        this.year = year;
+    }
 
-		public void setHour(int hour) {
-			this.hour = hour;
-		}
+    public int getMonth() {
+        return month;
+    }
 
-		public int getMinute() {
-			return minute;
-		}
+    public void setMonth(int month) {
+        this.month = month;
+    }
 
-		public void setMinute(int minute) {
-			this.minute = minute;
-		}
+    public int getDay() {
+        return day;
+    }
 
-		public String getDateTime() {
-			return dateTime;
-		}
+    public void setDay(int day) {
+        this.day = day;
+    }
 
-		public void setDateTime(String dateTime) {
-			this.dateTime = dateTime;
-		}
-		
-	    
+    public int getHour() {
+        return hour;
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public int getMinute() {
+        return minute;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
 }

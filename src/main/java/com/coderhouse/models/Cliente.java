@@ -3,7 +3,6 @@ package com.coderhouse.models;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,48 +10,60 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+
 @Schema(description = "Modelo de Cliente")
 @Entity
 @Table(name = "clientes")
 public class Cliente {
-	@Schema(description = "Id de Cliente, generado automáticamente por la base de datos", example = "1", requiredMode = Schema.RequiredMode.REQUIRED)
+
+    @Schema(description = "Id de Cliente, generado automáticamente por la base de datos", example = "1", requiredMode = Schema.RequiredMode.REQUIRED)
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
-	
-	
+
+    @Schema(description = "Nombre del cliente", example = "Juan", requiredMode = Schema.RequiredMode.REQUIRED)
     @Column(nullable = false, length = 100)
     private String nombre;
 
+    @Schema(description = "Apellido del cliente", example = "Pérez", requiredMode = Schema.RequiredMode.REQUIRED)
     @Column(nullable = false, length = 100)
     private String apellido;
 
+    @Schema(description = "DNI del cliente", example = "12345678", requiredMode = Schema.RequiredMode.REQUIRED)
     @Column(nullable = false, unique = true)
     private int dni;
 
+    @Schema(description = "Email del cliente", example = "juan.perez@example.com")
     @Column(unique = true, length = 100)
     private String email;
 
-    @Column( nullable=false, length = 150)
+    @Schema(description = "Dirección del cliente", example = "Calle Falsa 123", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Column(nullable=false, length = 150)
     private String direccion;
 
+    @Schema(description = "Localidad del cliente", example = "CABA")
     @Column(length = 100)
     private String localidad;
 
+    @Schema(description = "Provincia del cliente", example = "Buenos Aires")
     @Column(length = 100)
     private String provincia;
 
+    @Schema(description = "Fecha de nacimiento del cliente", example = "1990-01-01")
     @Column
     private Date fechaNac;
 
+    @Schema(description = "Fecha de registro del cliente")
     private LocalDate fechaRegistro;
 
+    @Schema(description = "Fecha de modificación del registro del cliente")
     private LocalDate fechaModificacionRegistro;
 
+    @Schema(description = "Estado activo del cliente", example = "true")
     private boolean estadoActivo;
-    
-    private LocalDateTime createdAt;
 
+    @Schema(description = "Fecha de creación del cliente")
+    private LocalDateTime createdAt;
 
     // Constructores, Getters y Setters
 

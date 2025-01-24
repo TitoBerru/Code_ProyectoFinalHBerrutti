@@ -39,10 +39,15 @@ Crea una base de datos en MySQL y actualiza las credenciales en:
 src/main/resources/application.properties
 
 Properties:
+
 spring.datasource.url=jdbc:mysql://localhost:3306/nombre_basedatos
+
 spring.datasource.username=tu_usuario
+
 spring.datasource.password=tu_contraseña
+
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
 spring.jpa.hibernate.ddl-auto=update
 
 - **Alternativa:** Dentro de la carpeta resources, existe la carpeta sql, la cual contiene un script inicial donde se podra generar en forma automatica la base de datos, la cual ya incluye clientes y productos de ejemplo.
