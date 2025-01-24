@@ -2,6 +2,7 @@ package com.coderhouse.controllers;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -58,17 +59,21 @@ public class ClienteController {
     @Operation(summary = "Crear un nuevo cliente", description = "Crea un nuevo cliente")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "201", description = "Cliente creado con éxito"),
+        @ApiResponse(responseCode = "400", description = "Solicitud inválida"),
         @ApiResponse(responseCode = "500", description = "Error interno del servidor")
     })
     @PostMapping("/create")
-    public ResponseEntity<Cliente> createCliente(@RequestBody Cliente cliente) {
+    public ResponseEntity<?> createCliente(@RequestBody Cliente cliente) {
         try {
             Cliente clienteCreado = clienteService.saveCliente(cliente);
             return ResponseEntity.status(HttpStatus.CREATED).body(clienteCreado);
         }
-        catch(Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 500
-        }    
+        catch(DataIntegrityViolationException  e) {
+        	String errorMessage = "Error: Violación de restricción de integridad - Duplicado de DNI o email.";
+        	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del servidor");
+        }
     }
     
     @Operation(summary = "Editar un cliente por ID", description = "Edita un cliente específico por su ID")
