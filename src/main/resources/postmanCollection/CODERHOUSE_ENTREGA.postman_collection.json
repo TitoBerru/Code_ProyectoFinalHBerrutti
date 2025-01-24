@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "c1c38023-629f-4e89-b0b3-a04f69d69324",
 		"name": "CODERHOUSE_ENTREGA",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "16575197"
 	},
 	"item": [
@@ -14,19 +14,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/clientes",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"clientes"
-							]
-						}
+						"url": "http://localhost:8080/api/v1/clientes"
 					},
 					"response": []
 				},
@@ -35,20 +23,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/clientes/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"clientes",
-								"1"
-							]
-						}
+						"url": "http://localhost:8080/api/v1/clientes/1"
 					},
 					"response": []
 				},
@@ -66,20 +41,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/clientes/create",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"clientes",
-								"create"
-							]
-						}
+						"url": "http://localhost:8080/api/v1/clientes/create"
 					},
 					"response": []
 				},
@@ -88,20 +50,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/clientes/13",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"clientes",
-								"13"
-							]
-						}
+						"url": "http://localhost:8080/api/v1/clientes/13"
 					},
 					"response": []
 				},
@@ -119,20 +68,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/clientes/4",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"clientes",
-								"4"
-							]
-						}
+						"url": "http://localhost:8080/api/v1/clientes/4"
 					},
 					"response": []
 				}
@@ -146,19 +82,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/productos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"productos"
-							]
-						}
+						"url": "http://localhost:8080/api/v1/productos"
 					},
 					"response": []
 				},
@@ -167,20 +91,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/productos/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"productos",
-								"1"
-							]
-						}
+						"url": "http://localhost:8080/api/v1/productos/1"
 					},
 					"response": []
 				},
@@ -198,20 +109,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/productos/create",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"productos",
-								"create"
-							]
-						}
+						"url": "http://localhost:8080/api/v1/productos/create"
 					},
 					"response": []
 				},
@@ -220,20 +118,7 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/productos/3",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"productos",
-								"3"
-							]
-						}
+						"url": "http://localhost:8080/api/v1/productos/3"
 					},
 					"response": []
 				},
@@ -251,20 +136,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/productos/4",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"productos",
-								"4"
-							]
-						}
+						"url": "http://localhost:8080/api/v1/productos/4"
 					},
 					"response": []
 				}
@@ -278,19 +150,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/facturas",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"facturas"
-							]
-						}
+						"url": "http://localhost:8080/api/v1/facturas"
 					},
 					"response": []
 				},
@@ -299,25 +159,26 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/facturas/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"facturas",
-								"2"
-							]
-						}
+						"url": "http://localhost:8080/api/v1/facturas/2"
 					},
 					"response": []
 				},
 				{
-					"name": "Crear 1 Factura",
+					"name": "Eliminar Factura by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/api/v1/facturas/4"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Compras",
+			"item": [
+				{
+					"name": "Comprar producto",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -330,109 +191,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/facturas/create",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"facturas",
-								"create"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Eliminar Factura by Id",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/v1/facturas/4",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"facturas",
-								"4"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Editar 1 factura",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\r\n        \"numeroFactura\": \"38\",\r\n        \"fechaVenta\": \"2024-12-09\"\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/facturas/5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"facturas",
-								"5"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Compras",
-			"item": [
-				{
-					"name": "realizar compra",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "  {\r\n       \r\n        \"nombre\": \"asa  \",\r\n        \"apellido\": \"borrar\",\r\n        \"dni\": 111222342,\r\n        \"legajo\": \"L111222342\"\r\n   \r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/v1/clientes/create",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"v1",
-								"clientes",
-								"create"
-							]
-						}
+						"url": "http://localhost:8080/api/v1/facturas/create"
 					},
 					"response": []
 				}
