@@ -4,8 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
+import com.coderhouse.dtos.ClienteDTO;
 import com.coderhouse.models.Cliente;
 import com.coderhouse.repositories.ClienteRepository;
 import jakarta.transaction.Transactional;
@@ -34,29 +33,23 @@ public class ClienteService {
 	}
 	
 	// Editar Cliente
+
 	@Transactional
-	public Cliente updateClienteById(Long id, Cliente clienteDetails) {
-		Cliente clienteEncontrado = clienteRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado"));
-		
-		clienteEncontrado.setNombre(clienteDetails.getNombre());
-		clienteEncontrado.setApellido(clienteDetails.getApellido());
-		clienteEncontrado.setDireccion(clienteDetails.getDireccion());
-		clienteEncontrado.setLocalidad(clienteDetails.getLocalidad());
-		clienteEncontrado.setProvincia(clienteDetails.getProvincia());
-		clienteEncontrado.setFechaNac(clienteDetails.getFechaNac());
-		clienteEncontrado.setEstadoActivo(clienteDetails.isEstadoActivo());
-		
-		
-		if (clienteDetails.getDni() !=0 && clienteDetails.getEmail() !=null && !clienteDetails.getEmail().isEmpty() ) {
-		
-			clienteEncontrado.setEmail(clienteDetails.getEmail());
-			clienteEncontrado.setDni(clienteDetails.getDni());
-		}
-		
-		return clienteRepository.save(clienteEncontrado);
-		
+	public Cliente updateClienteById(Long id, ClienteDTO clienteDTO) {
+	    Cliente clienteExistente = clienteRepository.findById(id)
+	            .orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado"));
+
+	    // Actualizar campos
+	    if (clienteDTO.getNombre() != null) clienteExistente.setNombre(clienteDTO.getNombre());
+	    if (clienteDTO.getApellido() != null) clienteExistente.setApellido(clienteDTO.getApellido());
+	    if (clienteDTO.getDireccion() != null) clienteExistente.setDireccion(clienteDTO.getDireccion());
+	    if (clienteDTO.getEmail() != null && !clienteDTO.getEmail().isEmpty()) clienteExistente.setEmail(clienteDTO.getEmail());
+	    if (clienteDTO.getDni() > 0) clienteExistente.setDni(clienteDTO.getDni());
+
+	    // Retornar cliente actualizado
+	    return clienteRepository.save(clienteExistente);
 	}
+
 	// Borrar cliente
 	public void deleteClienteById(Long id) {
 		if(!clienteRepository.existsById(id)) {

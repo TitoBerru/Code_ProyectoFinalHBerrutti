@@ -6,10 +6,13 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.coderhouse.dtos.ClienteDTO;
 import com.coderhouse.models.Cliente;
 import com.coderhouse.service.ClienteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
@@ -63,8 +66,16 @@ public class ClienteController {
         @ApiResponse(responseCode = "500", description = "Error interno del servidor")
     })
     @PostMapping("/create")
-    public ResponseEntity<?> createCliente(@RequestBody Cliente cliente) {
+    public ResponseEntity<?> createCliente(@RequestBody ClienteDTO clienteDTO) {
         try {
+        	Cliente cliente = new Cliente();
+        	
+        	cliente.setNombre(clienteDTO.getNombre());
+        	cliente.setApellido(clienteDTO.getApellido());
+        	cliente.setDni(clienteDTO.getDni());
+        	cliente.setEmail(clienteDTO.getEmail());
+        	cliente.setDireccion(clienteDTO.getDireccion());
+        	
             Cliente clienteCreado = clienteService.saveCliente(cliente);
             return ResponseEntity.status(HttpStatus.CREATED).body(clienteCreado);
         }
@@ -83,14 +94,13 @@ public class ClienteController {
         @ApiResponse(responseCode = "500", description = "Error interno del servidor")
     })
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> editClienteById(@PathVariable Long id, @RequestBody Cliente clienteModificado){
+    public ResponseEntity<Cliente> editClienteById(@PathVariable Long id, @Valid @RequestBody ClienteDTO clienteDTO) {
         try {
-            Cliente clienteAModificar = clienteService.updateClienteById(id, clienteModificado);
-            return ResponseEntity.ok(clienteAModificar);
-        }
-        catch(IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();  // 404
-        } catch(Exception e) {
+            Cliente clienteActualizado = clienteService.updateClienteById(id, clienteDTO);
+            return ResponseEntity.ok(clienteActualizado); // 200
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build(); // 404
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 500
         }
     }

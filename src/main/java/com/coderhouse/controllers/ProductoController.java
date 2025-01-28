@@ -5,10 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.coderhouse.dtos.ProductoDTO;
 import com.coderhouse.models.Producto;
 import com.coderhouse.service.ProductoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
@@ -59,14 +62,15 @@ public class ProductoController {
         @ApiResponse(responseCode = "500", description = "Error interno del servidor")
     })
     @PostMapping("/create")
-    public ResponseEntity<Producto> createProducto(@RequestBody Producto producto) {
+    public ResponseEntity<Producto> createProducto(@RequestBody @Valid ProductoDTO productoDTO) {
         try {
-            Producto productoCreado = productoService.saveProducto(producto);
+            Producto productoCreado = productoService.createProducto(productoDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(productoCreado);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 500
         }
     }
+
 
     @Operation(summary = "Editar un producto por ID", description = "Edita un producto específico por su ID")
     @ApiResponses(value = {

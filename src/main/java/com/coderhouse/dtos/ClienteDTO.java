@@ -1,23 +1,30 @@
 package com.coderhouse.dtos;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.*;
+
 
 @Schema(description = "DTO para Cliente")
 public class ClienteDTO {
 
     @Schema(description = "Nombre del cliente", example = "Juan", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
 
     @Schema(description = "Apellido del cliente", example = "Pérez", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotBlank(message = "El apellido es obligatorio")
     private String apellido;
 
     @Schema(description = "DNI del cliente", example = "12345678", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Min(value = 1, message = "El DNI debe ser mayor que 0")
     private int dni;
 
     @Schema(description = "Email del cliente", example = "juan.perez@example.com", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @Email(message = "El email debe tener un formato válido")
     private String email;
-
+    
     @Schema(description = "Dirección del cliente", example = "Calle Falsa 123", requiredMode = Schema.RequiredMode.REQUIRED)
+    @NotBlank(message = "La dirección es obligatoria")
     private String direccion;
 
     // Constructores

@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.coderhouse.dtos.ProductoDTO;
 import com.coderhouse.models.Producto;
 import com.coderhouse.repositories.ProductoRepository;
 
@@ -30,8 +31,13 @@ public class ProductoService {
 		
 		// Guardar 1 producto
 		@Transactional
-		public Producto saveProducto(Producto producto) {
-			return productoRepository.save(producto);
+		public Producto createProducto(ProductoDTO productoDTO) {
+		    Producto producto = new Producto();
+		    producto.setNombreProducto(productoDTO.getNombreProducto());
+		    producto.setPrecioVentaProducto(productoDTO.getPrecioVentaProducto());
+		    producto.setCantidadStockProducto(productoDTO.getCantidadStockProducto());
+		    
+		    return productoRepository.save(producto);
 		}
 		// Editar producto
 		@Transactional

@@ -1,0 +1,119 @@
+-- Creación de la base de datos
+CREATE DATABASE IF NOT EXISTS `coderhouse` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE `coderhouse`;
+
+-- Creación de la tabla `clientes`
+CREATE TABLE IF NOT EXISTS `clientes` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `apellido` varchar(100) NOT NULL,
+  `created_at` datetime(6) DEFAULT NULL,
+  `direccion` varchar(150) DEFAULT NULL,
+  `dni` int(11) NOT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `estado_activo` bit(1) NOT NULL,
+  `fecha_modificacion_registro` date DEFAULT NULL,
+  `fecha_nac` date DEFAULT NULL,
+  `fecha_registro` date DEFAULT NULL,
+  `localidad` varchar(100) DEFAULT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `provincia` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UKm6ysdwsqke00e5piajbvgn6lg` (`dni`),
+  UNIQUE KEY `UK1c96wv36rk2hwui7qhjks3mvg` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+
+-- Inserción de datos para `clientes`
+INSERT INTO `clientes` (`id`, `apellido`, `created_at`, `direccion`, `dni`, `email`, `estado_activo`, `fecha_modificacion_registro`, `fecha_nac`, `fecha_registro`, `localidad`, `nombre`, `provincia`) VALUES
+  (1, 'Alcorta', NULL, 'de la casa, 2020', 111222341, 'julian@test.com', b'1', NULL, NULL, NULL, NULL, 'Julian', NULL),
+  (2, 'Berru', NULL, 'otra direccion 2032', 111222343, 'tito@test.com', b'1', NULL, NULL, NULL, NULL, 'Tito', NULL),
+  (5, 'Vital', NULL, 'Nueva Direccion Manuel Vital', 111222345, 'manuel_modificado@test.com', b'1', NULL, NULL, NULL, NULL, 'Manuel', NULL),
+  (6, 'Gomez', NULL, 'Calle 123', 111222346, 'gomez1@test.com', b'1', NULL, NULL, NULL, 'Buenos Aires', 'Lucas', 'Buenos Aires'),
+  (7, 'Perez', NULL, 'Avenida Siempreviva 742', 111222347, 'perez2@test.com', b'1', NULL, NULL, NULL, 'Córdoba', 'Maria', 'Córdoba'),
+  (8, 'Lopez', NULL, 'Ruta 20', 111222348, 'lopez3@test.com', b'1', NULL, NULL, NULL, 'Rosario', 'Ana', 'Santa Fe'),
+  (9, 'Fernandez', NULL, 'Calle Falsa 123', 111222349, 'fernandez4@test.com', b'1', NULL, NULL, NULL, 'Mendoza', 'Carlos', 'Mendoza'),
+  (10, 'Martinez', NULL, 'Boulevard 1', 111222350, 'martinez5@test.com', b'1', NULL, NULL, NULL, 'Salta', 'Joaquin', 'Salta'),
+  (11, 'Diaz', NULL, 'Camino del Sol', 111222351, 'diaz6@test.com', b'1', NULL, NULL, NULL, 'San Juan', 'Lucia', 'San Juan'),
+  (12, 'Garcia', NULL, 'Los Álamos 45', 111222352, 'garcia7@test.com', b'1', NULL, NULL, NULL, 'Tucumán', 'Sofia', 'Tucumán'),
+  (13, 'Sanchez', NULL, 'Las Heras 123', 111222353, 'sanchez8@test.com', b'1', NULL, NULL, NULL, 'Neuquén', 'Mariano', 'Neuquén'),
+  (14, 'Rodriguez', NULL, 'Avenida del Sol', 111222354, 'rodriguez9@test.com', b'1', NULL, NULL, NULL, 'La Pampa', 'Florencia', 'La Pampa'),
+  (15, 'Morales', NULL, 'Calle 50', 111222355, 'morales10@test.com', b'1', NULL, NULL, NULL, 'Chaco', 'Agustina', 'Chaco');
+
+
+
+-- Creación de la tabla `facturas`
+CREATE TABLE IF NOT EXISTS `facturas` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `apellido_cliente` varchar(255) NOT NULL,
+  `direccion_cliente` varchar(255) NOT NULL,
+  `dni_cliente` varchar(255) NOT NULL,
+  `fecha_emision` datetime(6) NOT NULL,
+  `nombre_cliente` varchar(255) NOT NULL,
+  `numero_factura` varchar(255) NOT NULL,
+  `total_factura` decimal(38,2) NOT NULL,
+  `cliente_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UKm3ybkrgx2m3tj1tk6rp7sqjxt` (`numero_factura`),
+  KEY `FK1qiuk10rfkovhlfpsk7oic0v8` (`cliente_id`),
+  CONSTRAINT `FK1qiuk10rfkovhlfpsk7oic0v8` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+
+-- Creación de la tabla `productos`
+CREATE TABLE IF NOT EXISTS `productos` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `cantidad_stock_producto` int(11) NOT NULL,
+  `categoria_producto` varchar(50) DEFAULT NULL,
+  `descripcion_producto` varchar(500) DEFAULT NULL,
+  `descuento_producto` int(11) NOT NULL,
+  `estado_activo_producto` bit(1) NOT NULL,
+  `fecha_alta_producto` date DEFAULT NULL,
+  `fecha_modificacion_producto` date DEFAULT NULL,
+  `img_url_producto` varchar(200) DEFAULT NULL,
+  `marca_producto` varchar(50) DEFAULT NULL,
+  `moneda_producto` varchar(3) DEFAULT NULL,
+  `nombre_producto` varchar(255) NOT NULL,
+  `precio_compra_producto` int(11) NOT NULL,
+  `precio_venta_producto` decimal(38,2) NOT NULL,
+  `proveedor_producto` varchar(100) DEFAULT NULL,
+  `factura_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKkl66g07pk1hjn0v99wwo70pl` (`factura_id`),
+  CONSTRAINT `FKkl66g07pk1hjn0v99wwo70pl` FOREIGN KEY (`factura_id`) REFERENCES `facturas` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+
+-- Inserción de datos para `productos`
+INSERT INTO `productos` (`id`, `cantidad_stock_producto`, `categoria_producto`, `descripcion_producto`, `descuento_producto`, `estado_activo_producto`, `fecha_alta_producto`, `fecha_modificacion_producto`, `img_url_producto`, `marca_producto`, `moneda_producto`, `nombre_producto`, `precio_compra_producto`, `precio_venta_producto`, `proveedor_producto`, `factura_id`) VALUES
+  (1, 86, 'Heladera', 'Heladera 5 puertas Peabody', 0, b'1', NULL, NULL, 'www.img/products/vt/Peabody.webp', 'Peabody', 'ARS', 'Heladera 5 puertas Peabody', 4000, 8500.00, 'Peabody SA', NULL),
+  (2, 97, 'Heladera', 'Heladera 5 puertas Peabody', 0, b'1', NULL, NULL, 'www.img/products/vt/Peabody.webp', 'Peabody', 'ARS', 'Heladera 3 puertas Peabody', 2000, 3500.00, 'Peabody SA', NULL),
+  (3, 889, 'Cervezas', 'Cerveza Rubia Miller', 0, b'1', NULL, NULL, 'www.img/products/vt/Peabody.webp', 'Miller', 'ARS', 'Cerveza Miller', 200, 350.00, 'miller SA', NULL),
+  (5, 935, 'Cervezas', 'Cerveza Rubia Corona', 0, b'1', NULL, NULL, 'www.img/products/vt/corona.webp', 'Corona', 'ARS', 'Cerveza Corona', 210, 450.00, 'Corona SA', NULL),
+  (6, 1000, 'Cervezas', 'Cerveza Rubia Heineken', 0, b'1', NULL, NULL, 'www.img/products/vt/Heineken.webp', 'Heineken', 'ARS', 'Cerveza Heineken', 310, 650.00, 'Heineken SA', NULL),
+  (7, 100, 'Freezer', 'Freezer Peabody', 0, b'1', NULL, NULL, 'www.img/products/vt/FreezerPeabody.webp', 'Peabody', 'ARS', 'Freezer Peabody', 3000, 7500.00, 'Peabody SA', NULL),
+(8, 120, 'Electrodomésticos', 'Microondas Samsung 32L', 10, b'1', NULL, NULL, 'www.img/products/vt/microondas.webp', 'Samsung', 'ARS', 'Microondas Samsung', 12000, 18000.00, 'Samsung SA', NULL),
+  (9, 300, 'Limpieza', 'Lavandina Ayudín 1L', 5, b'1', NULL, NULL, 'www.img/products/vt/lavandina.webp', 'Ayudín', 'ARS', 'Lavandina Ayudín', 100, 250.00, 'Ayudín SA', NULL),
+  (10, 150, 'Alimentos', 'Galletitas Oreo 500g', 0, b'1', NULL, NULL, 'www.img/products/vt/oreo.webp', 'Oreo', 'ARS', 'Galletitas Oreo', 150, 350.00, 'Oreo SA', NULL),
+  (11, 75, 'Electrodomésticos', 'Aspiradora LG Turbo', 15, b'1', NULL, NULL, 'www.img/products/vt/aspiradora.webp', 'LG', 'ARS', 'Aspiradora LG', 25000, 37000.00, 'LG SA', NULL),
+  (12, 500, 'Bebidas', 'Coca-Cola 2L', 0, b'1', NULL, NULL, 'www.img/products/vt/coca.webp', 'Coca-Cola', 'ARS', 'Coca-Cola 2L', 300, 450.00, 'Coca-Cola SA', NULL),
+  (13, 1000, 'Alimentos', 'Fideos Matarazzo 1kg', 0, b'1', NULL, NULL, 'www.img/products/vt/fideos.webp', 'Matarazzo', 'ARS', 'Fideos Matarazzo', 150, 200.00, 'Matarazzo SA', NULL),
+  (14, 200, 'Electrodomésticos', 'Televisor 50 pulgadas LG', 20, b'1', NULL, NULL, 'www.img/products/vt/tvlg.webp', 'LG', 'ARS', 'Televisor LG', 80000, 120000.00, 'LG SA', NULL),
+  (15, 400, 'Bebidas', 'Agua Mineral Villavicencio 1.5L', 0, b'1', NULL, NULL, 'www.img/products/vt/agua.webp', 'Villavicencio', 'ARS', 'Agua Mineral Villavicencio', 200, 300.00, 'Villavicencio SA', NULL),
+  (16, 50, 'Electrodomésticos', 'Cafetera Philips', 10, b'1', NULL, NULL, 'www.img/products/vt/cafetera.webp', 'Philips', 'ARS', 'Cafetera Philips', 10000, 15000.00, 'Philips SA', NULL),
+  (17, 100, 'Hogar', 'Sábanas King Size Cannon', 25, b'1', NULL, NULL, 'www.img/products/vt/sabanas.webp', 'Cannon', 'ARS', 'Sábanas King Size Cannon', 5000, 8000.00, 'Cannon SA', NULL);
+
+-- Creación de la tabla `detalles_factura`
+CREATE TABLE IF NOT EXISTS `detalles_factura` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `cantidad` int(11) NOT NULL,
+  `precio_unitario` decimal(38,2) NOT NULL,
+  `subtotal` decimal(38,2) NOT NULL,
+  `factura_id` bigint(20) NOT NULL,
+  `producto_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK83v4fjco4kw6r47jik8xcmuy7` (`factura_id`),
+  KEY `FKow2tvjwh0e6ahmyl7eb90crfi` (`producto_id`),
+  CONSTRAINT `FK83v4fjco4kw6r47jik8xcmuy7` FOREIGN KEY (`factura_id`) REFERENCES `facturas` (`id`),
+  CONSTRAINT `FKow2tvjwh0e6ahmyl7eb90crfi` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
+
+-- Ajustes finales
+SET FOREIGN_KEY_CHECKS = 1;
+
