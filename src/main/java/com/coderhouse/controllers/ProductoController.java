@@ -79,10 +79,10 @@ public class ProductoController {
         @ApiResponse(responseCode = "500", description = "Error interno del servidor")
     })
     @PutMapping("/{id}")
-    public ResponseEntity<Producto> editProductoById(@PathVariable Long id, @RequestBody Producto productoModificado) {
+    public ResponseEntity<Producto> editProductoById(@PathVariable Long id, @RequestBody @Valid ProductoDTO productoDTO) {
         try {
-            Producto productoAModificar = productoService.updateProductoById(id, productoModificado);
-            return ResponseEntity.ok(productoAModificar);
+            Producto productoActualizado = productoService.updateProductoById(id, productoDTO);
+            return ResponseEntity.ok(productoActualizado);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build(); // 404
         } catch (Exception e) {
