@@ -42,25 +42,49 @@ public class ProductoService {
 		// Editar producto
 		@Transactional
 		public Producto updateProductoById(Long id, ProductoDTO productoDTO) {
-		    // Buscar el producto existente por ID
 		    Producto productoEncontrado = productoRepository.findById(id)
 		            .orElseThrow(() -> new IllegalArgumentException("Producto no encontrado"));
 
-		    // Actualizar campos solo si tienen valores válidos
 		    if (productoDTO.getNombreProducto() != null && !productoDTO.getNombreProducto().isEmpty()) {
 		        productoEncontrado.setNombreProducto(productoDTO.getNombreProducto());
 		    }
-
+		    if (productoDTO.getDescripcionProducto() != null && !productoDTO.getDescripcionProducto().isEmpty()) {
+		        productoEncontrado.setDescripcionProducto(productoDTO.getDescripcionProducto());
+		    }
+		    if (productoDTO.getCategoriaProducto() != null && !productoDTO.getCategoriaProducto().isEmpty()) {
+		        productoEncontrado.setCategoriaProducto(productoDTO.getCategoriaProducto());
+		    }
+		    if (productoDTO.getMarcaProducto() != null && !productoDTO.getMarcaProducto().isEmpty()) {
+		        productoEncontrado.setMarcaProducto(productoDTO.getMarcaProducto());
+		    }
+		    if (productoDTO.getProveedorProducto() != null && !productoDTO.getProveedorProducto().isEmpty()) {
+		        productoEncontrado.setProveedorProducto(productoDTO.getProveedorProducto());
+		    }
+		    if (productoDTO.getImgUrlProducto() != null && !productoDTO.getImgUrlProducto().isEmpty()) {
+		        productoEncontrado.setImgUrlProducto(productoDTO.getImgUrlProducto());
+		    }
+		    if (productoDTO.getPrecioCompraProducto() != null && productoDTO.getPrecioCompraProducto().compareTo(BigDecimal.ZERO) > 0) {
+		        productoEncontrado.setPrecioCompraProducto(productoDTO.getPrecioCompraProducto());
+		    }
+		    if (productoDTO.getPrecioVentaProducto() != null && productoDTO.getPrecioVentaProducto().compareTo(BigDecimal.ZERO) > 0) {
+		        productoEncontrado.setPrecioVentaProducto(productoDTO.getPrecioVentaProducto());
+		    }
+		    if (productoDTO.getDescuentoProducto() != null && productoDTO.getDescuentoProducto() >= 0) {
+		        productoEncontrado.setDescuentoProducto(productoDTO.getDescuentoProducto());
+		    }
+		    if (productoDTO.getMonedaProducto() != null && !productoDTO.getMonedaProducto().isEmpty()) {
+		        productoEncontrado.setMonedaProducto(productoDTO.getMonedaProducto());
+		    }
 		    if (productoDTO.getCantidadStockProducto() != null && productoDTO.getCantidadStockProducto() >= 0) {
 		        productoEncontrado.setCantidadStockProducto(productoDTO.getCantidadStockProducto());
 		    }
-
-		    if (productoDTO.getPrecioVentaProducto() != null && productoDTO.getPrecioVentaProducto().compareTo(BigDecimal.ZERO) > 0) {
-		        productoEncontrado.setPrecioVentaProducto(productoDTO.getPrecioVentaProducto());
+		    if (productoDTO.getEstadoActivoProducto() != null) {
+		        productoEncontrado.setEstadoActivoProducto(productoDTO.getEstadoActivoProducto());
 		    }
 
 		    return productoRepository.save(productoEncontrado);
 		}
+
 		
 		// Borrar Producto
 		public void deleteProductoById(Long id) {

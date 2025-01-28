@@ -43,7 +43,7 @@ public class Producto {
     private String imgUrlProducto;
 
     @Schema(description = "Precio de compra del producto", example = "500")
-    private int precioCompraProducto;
+    private BigDecimal precioCompraProducto;
 
     @Schema(description = "Precio de venta del producto", example = "599.99", requiredMode = Schema.RequiredMode.REQUIRED)
     @Column(nullable = false)
@@ -89,7 +89,7 @@ public class Producto {
     }
 
     public Producto(Long id, String nombreProducto, String descripcionProducto, String categoriaProducto,
-                    String marcaProducto, String proveedorProducto, String imgUrlProducto, int precioCompraProducto,
+                    String marcaProducto, String proveedorProducto, String imgUrlProducto, BigDecimal precioCompraProducto,
                     BigDecimal precioVentaProducto, int descuentoProducto, String monedaProducto, LocalDate fechaAltaProducto,
                     LocalDate fechaModificacionProducto, boolean estadoActivoProducto, Integer cantidadStockProducto,
                     List<DetalleFactura> detallesFactura) {
@@ -168,11 +168,11 @@ public class Producto {
         this.imgUrlProducto = imgUrlProducto;
     }
 
-    public int getPrecioCompraProducto() {
+    public BigDecimal getPrecioCompraProducto() {
         return precioCompraProducto;
     }
 
-    public void setPrecioCompraProducto(int precioCompraProducto) {
+    public void setPrecioCompraProducto(BigDecimal precioCompraProducto) {
         this.precioCompraProducto = precioCompraProducto;
     }
 
